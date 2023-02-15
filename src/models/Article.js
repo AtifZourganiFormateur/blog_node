@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../db/db');
+const Comment = require('./Comment');
 
 const Article = db.define('Article', {
   id: {
@@ -8,7 +9,7 @@ const Article = db.define('Article', {
     autoIncrement: true
   },
   titre: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(255),
     allowNull: false
   },
   contenu: {
@@ -20,5 +21,13 @@ const Article = db.define('Article', {
   createdAt: 'created',
   updatedAt: false
 });
+Article.hasMany(Comment, {
+  foreignKey:{
+    allowNull: false,
+    name: 'articleId'
+  },
+  sourceKey: 'id'
+})
+
 
 module.exports = Article;

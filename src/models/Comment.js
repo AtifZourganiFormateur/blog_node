@@ -11,17 +11,15 @@ const Comment = db.define('Comment', {
   contenu: {
     type: DataTypes.TEXT,
     allowNull: false
-  }
+  },
+ 
+
 }, {
   timestamps: true,
   createdAt: 'created',
   updatedAt: false
 });
 
-Comment.belongsTo(Article, {
-  foreignKey: {
-    allowNull: false
-  }
-});
-
 module.exports = Comment;
+
+ 
